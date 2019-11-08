@@ -1,27 +1,54 @@
-# AceFactory
+# ACE Seed  
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.12.
+[Angular CLI](https://github.com/angular/angular-cli) version 8.3.12.
 
-## Development server
+## Servidor de desarrollo
+`ng serve`  
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+`http://localhost:4200/`  
 
-## Code scaffolding
+---
+## Creación del componente web customizado
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Ejecutar  `ng build:element` para crear el componente web. El resultado de este comando será un archivo js ubicado en la carpeta `dist/element` en la raíz del proyecto.  
+  
+El nombre del componente web está compuesto de un PREFIJO y un NOMBRE personalizados `pr-nombre`. Este nombre es importante ya tiene que coincidir con el selector del componente que deseamos registrar.  
 
-## Build
+Para lograr esto y aprovechar el uso del Angular CLI, podemos modificar el prefijo en el archivo **angular.json** (esto hace que el CLI genere componentes con el prefijo deseado) y en el archivo **compileElement.js** (aquí es necesario cambiar el prefijo como el nombre).  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+*angular.json*
+```json
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ace-seed": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "pr",
+      ...
+```
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+*compileElement.js*
+```js
+const fs = require('fs');
+const {execSync} = require('child_process');
 
-## Running end-to-end tests
+const PREFIX = "pr";
+const NAME = "nombre";
+const componentName = `${PREFIX}-${NAME}`;
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+---
+## Tests unitarios
 
-## Further help
+Ejecuta `ng test` para realizar test unitarios via [Karma](https://karma-runner.github.io).
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Tests end-to-end 
+
+Ejecuta `ng e2e` para realizar test end-to-end via [Protractor](http://www.protractortest.org/).
+

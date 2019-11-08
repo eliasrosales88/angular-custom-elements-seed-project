@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:elements": "sh buildElements.sh"
+    "build:element": "sh buildElement.sh"
   },
   "private": true,
   "dependencies": {

@@ -4,11 +4,13 @@ import { NgModule, Injector } from '@angular/core';
 import { ButtonComponent } from './button/button.component';
 import { createCustomElement } from '@angular/elements';
 import { GalleryComponent } from './gallery/gallery.component';
+import { SlideComponent } from './gallery/slide/slide.component';
 
 @NgModule({
   declarations: [
     ButtonComponent,
-    GalleryComponent
+    GalleryComponent,
+    SlideComponent
   ],
   imports: [
     BrowserModule

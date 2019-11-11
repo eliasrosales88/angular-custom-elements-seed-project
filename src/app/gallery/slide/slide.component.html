@@ -1,0 +1,17 @@
+<div class="slide-container" [ngSwitch]="item.type">
+
+    <div class="slide landing" *ngSwitchCase="'album'">
+        <!-- <h1>LANDING</h1> -->
+        <h1>{{item.cintillo}}</h1>
+        <h2>{{item.titulo}}</h2>
+        <p>{{item.firmas[0].name}}</p>
+        <figure>
+            <img src="{{item.multimedia[0].url}}" alt="{{item.titulo}}">
+            <figcaption>
+                <h2>{{item.titulo}}</h2>
+            </figcaption>
+        </figure>
+    </div>
+    
+    <div class="slide" *ngSwitchDefault>IMAGE</div>
+</div>

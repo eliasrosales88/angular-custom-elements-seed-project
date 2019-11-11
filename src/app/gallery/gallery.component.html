@@ -1,1 +1,23 @@
-<p>gallery works!</p>
+<!-- Historia de usuarios galería:
+* El usuario quiere que se cargen al menos 3 imágenes 
+* El usario quiere que se muestre una imagen por vez
+* El usuario quiere una entradilla con posibilidad de imagen de fondo, titulo, autor, fecha actualizacion y un botón de "ver galería" -->
+<div class="container">
+    <!-- CONTROLS -->
+    <nav class="navigation">
+        <ul class="controls">
+            <li class="previousAction" (click)="previousAction()"><</li>
+            <li class="nextAction" (click)="nextAction()">></li>
+        </ul>
+    </nav>
+
+    <div class="multimedia">
+        <div class="multimedia-item-container" *ngFor="let item of loadedSlides; let i=index">
+           
+            <ue-slide [item]="item"></ue-slide>
+            
+        </div>
+        
+
+    </div>
+</div>

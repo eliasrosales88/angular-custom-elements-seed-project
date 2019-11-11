@@ -1,0 +1,8 @@
+.slide-container {
+    background-color: lightblue;;
+
+}
+
+.slide-container .slide.landing figure img{
+    width: 100%;
+}

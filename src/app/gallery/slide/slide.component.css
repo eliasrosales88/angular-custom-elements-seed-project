@@ -1,8 +1,16 @@
 .slide-container {
     background-color: lightblue;;
-
 }
 
-.slide-container .slide.landing figure img{
+.slide-container .slide.active{
+    
+}
+/* .slide-container .slide:not(.active){
+    display: none;
+} */
+.slide-container .slide figure{
+    margin: 0;
+}
+.slide-container .slide figure img{
     width: 100%;
 }

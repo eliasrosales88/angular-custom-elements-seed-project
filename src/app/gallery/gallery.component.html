@@ -12,9 +12,10 @@
     </nav>
 
     <div class="multimedia">
-        <div class="multimedia-item-container" *ngFor="let item of loadedSlides; let i=index">
+        <!-- {{state.activeItem}} -->
+        <div *ngFor="let item of state.loadedSlides; let i=index">
            
-            <ue-slide [item]="item"></ue-slide>
+            <ue-slide [index]="i" [activeItem]="state.activeItem" [item]="item"></ue-slide>
             
         </div>
         

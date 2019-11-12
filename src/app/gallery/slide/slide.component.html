@@ -1,6 +1,6 @@
 <div class="slide-container" [ngSwitch]="item.type">
 
-    <div class="slide landing" *ngSwitchCase="'album'">
+    <div class="slide landing" [hidden]="index !== activeItem" *ngSwitchCase="'album'">
         <!-- <h1>LANDING</h1> -->
         <h1>{{item.cintillo}}</h1>
         <h2>{{item.titulo}}</h2>
@@ -13,5 +13,13 @@
         </figure>
     </div>
     
-    <div class="slide" *ngSwitchDefault>IMAGE</div>
+    <div class="slide" [hidden]="index !== activeItem" *ngSwitchDefault>
+        <figure>
+            <img src="{{item.url}}" alt="{{item.titulo}}">
+            <figcaption>
+                <h2>{{item.titulo}}</h2>
+                <p>{{item.descripcion}}</p>
+            </figcaption>
+        </figure>
+    </div>
 </div>

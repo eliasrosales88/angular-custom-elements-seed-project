@@ -5,17 +5,23 @@
         <h1>{{item.cintillo}}</h1>
         <h2>{{item.titulo}}</h2>
         <p>{{item.firmas[0].name}}</p>
+        <p>{{item.publishedAt}}</p>
         <figure>
             <img src="{{item.multimedia[0].url}}" alt="{{item.titulo}}">
-            <figcaption>
-                <h2>{{item.titulo}}</h2>
-            </figcaption>
         </figure>
+        <div class="content">
+            <nav>
+                <button (click)="onStartGallery()">Ver galería ></button>
+            </nav>
+            <p>{{item.entradilla}}</p>
+        </div>
     </div>
     
     <div class="slide" [hidden]="index !== activeItem" *ngSwitchDefault>
         <figure>
-            <img src="{{item.url}}" alt="{{item.titulo}}">
+            <div class="img-container">
+                <img src="{{item.url}}" alt="{{item.titulo}}">
+            </div>
             <figcaption>
                 <h2>{{item.titulo}}</h2>
                 <p>{{item.descripcion}}</p>

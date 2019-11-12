@@ -4,7 +4,7 @@
 * El usuario quiere una entradilla con posibilidad de imagen de fondo, titulo, autor, fecha actualizacion y un botón de "ver galería" -->
 <div class="container">
     <!-- CONTROLS -->
-    <nav class="navigation">
+    <nav class="navigation" [hidden]="state.activeItem === 0">
         <ul class="controls">
             <li class="previousAction" (click)="previousAction()"><</li>
             <li class="nextAction" (click)="nextAction()">></li>
@@ -13,11 +13,11 @@
 
     <div class="multimedia">
         <!-- {{state.activeItem}} -->
-        <div *ngFor="let item of state.loadedSlides; let i=index">
+        <ng-container *ngFor="let item of state.loadedSlides; let i=index">
            
-            <ue-slide [index]="i" [activeItem]="state.activeItem" [item]="item"></ue-slide>
+            <ue-slide [index]="i" [activeItem]="state.activeItem" [item]="item" (startGallery)="nextAction()"></ue-slide>
             
-        </div>
+        </ng-container>
         
 
     </div>

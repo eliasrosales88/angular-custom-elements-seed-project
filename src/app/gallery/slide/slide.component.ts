@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'ue-slide',
@@ -9,15 +9,13 @@ export class SlideComponent implements OnInit {
   @Input() item: any ={};
   @Input() index: number;
   @Input() activeItem: number;
+  @Output() startGallery = new EventEmitter();
   
   constructor() { }
 
-  ngOnInit() {
-    console.log("Slide", this.item);
-    console.log("index", this.index);
-    console.log("activeItemIndex", this.activeItem);
-    
-    
+  onStartGallery(){
+    this.startGallery.emit();
   }
+  ngOnInit() {}
 
 }

@@ -3,7 +3,14 @@
 * El usario quiere que se muestre una imagen por vez
 * El usuario quiere una entradilla con posibilidad de imagen de fondo, titulo, autor, fecha actualizacion y un botón de "ver galería" -->
 <div class="container">
-    <!-- CONTROLS -->
+    <!-- HEADER -->
+    <header class="gallery-header" *ngIf="header === 'true'">
+        <ul>
+            <li><a href="#"><</a></li>
+        </ul>
+    </header>
+
+    <!-- GALLERY CONTROLS -->
     <nav class="navigation" [hidden]="state.activeItem === 0">
         <ul class="controls">
             <li class="previousAction" (click)="previousAction()"><</li>
@@ -11,14 +18,14 @@
         </ul>
     </nav>
 
+
+    <!-- SLIDES -->
     <div class="multimedia">
-        <!-- {{state.activeItem}} -->
         <ng-container *ngFor="let item of state.loadedSlides; let i=index">
            
             <ue-slide [index]="i" [activeItem]="state.activeItem" [item]="item" (startGallery)="nextAction()"></ue-slide>
             
         </ng-container>
-        
-
     </div>
+
 </div>

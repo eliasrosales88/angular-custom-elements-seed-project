@@ -11,6 +11,7 @@ export class GalleryComponent implements OnInit {
   constructor( private el: ElementRef, private cd: ChangeDetectorRef) { }
   
   @Input() src: string;
+  @Input() header: string = "true";
   testJSON: any = {
     "type": "album",
     "url": "https://www.marca.com/tiramillas/cine-tv/album/2019/10/31/5db71cbd268e3eb9028b45db.html",
@@ -450,7 +451,7 @@ export class GalleryComponent implements OnInit {
 
   loadContent(slidesToLoad: number){
     let maxSlides = slidesToLoad;
-    // Here wil go the fetched data
+    // Here will go the fetched data
     let slides = this.state.loadedSlides;
     slides.push(this.gallery)
     console.log(slides);
@@ -500,9 +501,10 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit() {
-    // const gallery = this.fetchData(this.src);
+    // this.gallery = this.fetchData(this.src);
     this.loadContent(3);
     console.log(this.state);
+    
     
     
   }

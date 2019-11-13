@@ -1,7 +1,7 @@
 <div class="slide-container" [ngSwitch]="item.type">
-
-    <div class="slide landing" [hidden]="index !== activeItem" *ngSwitchCase="'album'">
-        <!-- <h1>LANDING</h1> -->
+    
+    <!-- LANDING TEMPLATE -->
+    <div class="slide landing" [class.hidden]="index !== activeItem" *ngSwitchCase="'album'">
         <h1>{{item.cintillo}}</h1>
         <h2>{{item.titulo}}</h2>
         <p>{{item.firmas[0].name}}</p>
@@ -17,15 +17,20 @@
         </div>
     </div>
     
-    <div class="slide" [hidden]="index !== activeItem" *ngSwitchDefault>
+
+    <!-- IMAGE TEMPLATE -->
+    <div class="slide image" [class.hidden]="index !== activeItem" *ngSwitchDefault>
         <figure>
             <div class="img-container">
                 <img src="{{item.url}}" alt="{{item.titulo}}">
             </div>
-            <figcaption>
-                <h2>{{item.titulo}}</h2>
-                <p>{{item.descripcion}}</p>
-            </figcaption>
+                <figcaption>
+                    <h2>{{item.titulo}}</h2>
+                    <p>{{item.descripcion}}</p>
+                </figcaption>
         </figure>
+        <footer>
+            {{activeItem}}
+        </footer>
     </div>
 </div>

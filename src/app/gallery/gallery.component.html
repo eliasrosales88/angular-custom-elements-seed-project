@@ -11,21 +11,60 @@
     </header>
 
     <!-- GALLERY CONTROLS -->
-    <nav class="navigation" [hidden]="state.activeItem === 0">
+    <nav class="navigation" [hidden]="!state.isGalleryStarted">
         <ul class="controls">
             <li class="previousAction" (click)="previousAction()"><</li>
             <li class="nextAction" (click)="nextAction()">></li>
         </ul>
     </nav>
 
-
-    <!-- SLIDES -->
-    <div class="multimedia">
-        <ng-container *ngFor="let item of state.loadedSlides; let i=index">
-           
-            <ue-slide [index]="i" [activeItem]="state.activeItem" [item]="item" (startGallery)="nextAction()"></ue-slide>
+    <main>
+        
+        <!-- LANDING -->
+        <div 
+        class="landing" 
+        [hidden]="state.isGalleryStarted">
+            <h1>{{gallery.cintillo}}</h1>
+            <h2>{{gallery.titulo}}</h2>
+            <p>{{gallery.firmas[0].name}}</p>
+            <p>{{gallery.publishedAt}}</p>
+            <figure>
+                <img src="{{gallery.multimedia[0].url}}" alt="{{gallery.titulo}}">
+            </figure>
+            <div class="content">
+                <nav>
+                    <button (click)="onStartGallery()">Ver galería ></button>
+                </nav>
+                <p>{{gallery.entradilla}}</p>
+            </div>
+        </div>
+        
+        
+        
+        <!-- SLIDES -->
+        <div class="multimedia">
+            <ng-container *ngFor="let item of state.loadedSlides; let i=index">
             
-        </ng-container>
-    </div>
+                <ue-slide 
+                    #slide
+                    [hidden]="!state.isGalleryStarted"
+                    class=""
+                    [ngClass]="{
+                        previous: i < state.activeItem,
+                        current: i === state.activeItem,
+                        next: i > state.activeItem
+                    }" 
+                    [index]="i" 
+                    [activeItem]="state.activeItem" 
+                    [item]="item">
+                </ue-slide>
+                
+            </ng-container>
+        
+        
+        </div>
+    </main>
+    
+    
 
 </div>

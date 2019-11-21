@@ -8,6 +8,7 @@
     background-color: #550455;
     width: 100%;
     height: 48px;
+    z-index: 2;
 }
 .container .gallery-header ul {
     list-style: none;
@@ -49,6 +50,55 @@
     border-radius: 50%;
     
 }
+
+
+  /*****************************/
+ /** LANDING  STYLES **/
+/*****************************/
+.container .landing {
+  color: #ffffff;
+  text-align: center;
+  max-width: 650px;
+  margin: auto;
+  padding-top: 48px;
+}
+.container .landing figure{
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  background-color: #000;
+}
+.container .landing figure img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  opacity: .4;
+}
+
+.container .landing .content nav button{
+  margin-top: 26px;
+  background-color: #550455;
+  height: 48px;
+  padding: 15px;
+  border: none;
+  border-radius: 48px;
+  color: #fff;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 
 /* .container {
     display: flex;
@@ -163,10 +213,60 @@ animation-name: slideOutLeft;
 animation-name: slideOutRight;
 }
 
+.slideInLeft {
+  -webkit-animation-name: slideInLeft;
+  animation-name: slideInLeft;
+}
+
+@-webkit-keyframes slideInRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInRight {
+  -webkit-animation-name: slideInRight;
+  animation-name: slideInRight;
+}
+
+
 
 .animated {
     animation-duration: 2s;
     -webkit-animation-duration: 2s;
     animation-fill-mode: both;
     -webkit-animation-fill-mode: both;
+}
+
+.current {
+  /* position: absolute; */
+  width: 100%;
+  height: 100%;
+  -webkit-animation-name: slideInRight;
+  animation-name: slideInRight;
+  
+  animation-duration: 0.7s;
+  -webkit-animation-duration: 0.7s;
+  animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
 }

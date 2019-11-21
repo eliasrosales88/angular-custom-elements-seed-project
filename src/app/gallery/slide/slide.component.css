@@ -1,57 +1,14 @@
 .hidden{
     display: none;
 }
-  /*****************************/
- /** LANDING TEMPLATE STYLES **/
-/*****************************/
-.slide-container .slide.landing {
-    color: #ffffff;
-    text-align: center;
-    max-width: 650px;
-    margin: auto;
-    padding-top: 48px;
-}
-.slide-container .slide.landing figure{
-    margin: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    overflow: hidden;
-    background-color: #000;
-}
-.slide-container .slide.landing figure img{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    opacity: .4;
-}
-
-.slide-container .slide.landing .content nav button{
-    margin-top: 26px;
-    background-color: #550455;
-    height: 48px;
-    padding: 15px;
-    border: none;
-    border-radius: 48px;
-    color: #fff;
-    text-align: center;
-    font-size: large;
-    font-weight: bold;
-    cursor: pointer;
-}
+  
 
   /*****************************/
  /** IMAGE TEMPLATE STYLES ****/
 /*****************************/
-
+.slide-container {
+  position: relative;
+}
 .slide-container .slide.image {
     background-color: #1a1a1a;
 }
@@ -64,19 +21,21 @@
 }
 
 .slide-container .slide.image figure .img-container {
-    height: 76vh;
-    align-items: center;
+    min-height: 76vh;
     display: flex;
-    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
 
 }
-.slide-container .slide.image figure .img-container img {
+/* .slide-container .slide.image figure .img-container img {
     width: 100%;
-}
+} */
 .slide-container .slide.image figure figcaption {
     background-color: #000;
     width: 100%;
     min-height: 140px;
+    padding-bottom: 3px;
+    margin-bottom: 72px;
 }
 
 .slide-container .slide.image footer {
@@ -87,9 +46,15 @@
     height: 72px;
     /* margin: 0; */
     width: 100%;
-    background-color: #000;
+    background-color: orange;
     color: #ffffff;
 
+}
+
+@media only screen and (max-width: 768px) {
+  .slide-container .slide.image figure .img-container img {
+    width: 100%;
+}
 }
 
 @-webkit-keyframes slideOutLeft {

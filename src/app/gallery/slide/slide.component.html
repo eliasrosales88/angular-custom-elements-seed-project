@@ -1,25 +1,10 @@
 <div class="slide-container" [ngSwitch]="item.type">
     
-    <!-- LANDING TEMPLATE -->
-    <div class="slide landing" [class.hidden]="index !== activeItem" *ngSwitchCase="'album'">
-        <h1>{{item.cintillo}}</h1>
-        <h2>{{item.titulo}}</h2>
-        <p>{{item.firmas[0].name}}</p>
-        <p>{{item.publishedAt}}</p>
-        <figure>
-            <img src="{{item.multimedia[0].url}}" alt="{{item.titulo}}">
-        </figure>
-        <div class="content">
-            <nav>
-                <button (click)="onStartGallery()">Ver galería ></button>
-            </nav>
-            <p>{{item.entradilla}}</p>
-        </div>
-    </div>
-    
-
     <!-- IMAGE TEMPLATE -->
-    <div class="slide image" [class.hidden]="index !== activeItem" *ngSwitchDefault>
+    <div 
+        class="slide image" 
+        [class.hidden]="index !== activeItem" 
+        *ngSwitchDefault>
         <figure>
             <div class="img-container">
                 <img src="{{item.url}}" alt="{{item.titulo}}">

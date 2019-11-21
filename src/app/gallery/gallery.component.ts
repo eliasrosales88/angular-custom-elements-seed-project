@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'ue-gallery',
@@ -7,11 +7,12 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, ViewEncapsulation, E
   changeDetection: ChangeDetectionStrategy.OnPush, // Disabling zones in the particular component 
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class GalleryComponent implements OnInit {
+export class GalleryComponent implements OnInit, AfterViewInit {
   constructor( private el: ElementRef, private cd: ChangeDetectorRef) { }
   
   @Input() src: string;
   @Input() header: string = "true";
+  @ViewChildren("slide") slide: QueryList<any>;
   testJSON: any = {
     "type": "album",
     "url": "https://www.marca.com/tiramillas/cine-tv/album/2019/10/31/5db71cbd268e3eb9028b45db.html",
@@ -418,6 +419,7 @@ export class GalleryComponent implements OnInit {
 
   gallery: any = this.testJSON;
   state = {
+    isGalleryStarted: false,
     activeItem: 0,  // || localStorage.getItem("activeItem");
     loadedSlides: []
   }
@@ -435,12 +437,20 @@ export class GalleryComponent implements OnInit {
    * @param src URL string
    */
   async fetchData(src){
+    // const config = { 
+    //   method: 'GET',
+    //   headers: {},
+    //   mode: 'cors',
+    //   cache: 'default' 
+    // }
+    
     try {
-      const response = await fetch(src, { credentials:"same-origin" });
+      const response = await fetch(src, { mode:"cors" });
       if (!response.ok) {
         throw new Error("Network response was not ok.");
       }
       const data = await response.json();
+
       return data;
       
     } catch (error) {
@@ -452,61 +462,82 @@ export class GalleryComponent implements OnInit {
   loadContent(slidesToLoad: number){
     let maxSlides = slidesToLoad;
     // Here will go the fetched data
-    let slides = this.state.loadedSlides;
-    slides.push(this.gallery)
-    console.log(slides);
+    let loadedSlides = this.state.loadedSlides; // || localStorage
     
       for (let i = maxSlides; i > 0; i--) {
-        slides.push(this.gallery.multimedia[maxSlides - i]);
+        loadedSlides.push(this.gallery.multimedia[maxSlides - i]);
       }
        
-      this.setState("loadedSlides", slides);
-      console.log("loadedSlides",this.state.loadedSlides.length);
+      this.setState("loadedSlides", loadedSlides);
       
   }
 
+  onStartGallery(){
+    this.setState("isGalleryStarted", true);
+  }
+
+  onRestartGallery(){
+    this.setState("isGalleryStarted", false);
+    this.setState("loadedSlides", []);
+    this.loadContent(3);
+  }
  
+  
   nextAction(){
     console.log("nextAction");
+    console.log("Children", this.slide);
     let activeItem = this.state.activeItem;
-    activeItem = ++activeItem;
-    let slides = this.state.loadedSlides;
     
-    console.log("activeItem",activeItem);
-    console.log("gallery.multimedia.length",this.gallery.multimedia.length);
+    ++activeItem;
+
+    console.log("activeItem", activeItem);
     
-    if (activeItem <= this.gallery.multimedia.length) {
-      // console.log(slides.length);
-      slides.length <= this.gallery.multimedia.length ? slides.push(this.gallery.multimedia[slides.length - 1]) : null;
+    if (activeItem >= this.gallery.multimedia.length) {
+      console.log("HERE");
       
-  
-      this.setState("activeItem", activeItem);
-      this.setState("loadedSlides", slides);
-  
+      activeItem = this.gallery.multimedia.length;
+      this.setState("activeItem", --activeItem);
+      return;
     }
 
-    console.log(this.state);
+    console.log(typeof this.state.loadedSlides[activeItem]);
+    
+    if(typeof this.state.loadedSlides[activeItem] === 'undefined') {
+      let loadedSlides = this.state.loadedSlides;
+      loadedSlides.push(this.gallery.multimedia[loadedSlides.length]);
+      this.setState("loadedSlides", loadedSlides);
+    }
+    this.setState("activeItem", activeItem);
+
   }
   
   previousAction(){
     console.log("previousAction");
     let activeItem = this.state.activeItem;
-    activeItem = --activeItem;
-
+    --activeItem ;
+    console.log("previous activeItem", activeItem);
+    
     if (activeItem >= 0) {
-      
       this.setState("activeItem", activeItem);
-      console.log(this.state);
+    } else {
+      this.onRestartGallery();
     }
   }
 
+
   ngOnInit() {
-    // this.gallery = this.fetchData(this.src);
+    // this.fetchData(this.src).then((response => this.gallery = response));
+
     this.loadContent(3);
     console.log(this.state);
-    
-    
-    
+  }
+  
+  ngAfterViewInit(){
   }
 
+  
+  
 }
+
+
+

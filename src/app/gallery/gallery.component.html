@@ -43,25 +43,25 @@
         
         <!-- SLIDES -->
         <div class="multimedia">
-            <ng-container *ngFor="let item of state.loadedSlides; let i=index">
-            
-                <ue-slide 
-                    #slide
-                    [hidden]="!state.isGalleryStarted"
-                    class=""
-                    [ngClass]="{
-                        previous: i < state.activeItem,
-                        current: i === state.activeItem,
-                        next: i > state.activeItem
-                    }" 
-                    [index]="i" 
-                    [activeItem]="state.activeItem" 
-                    [item]="item">
-                </ue-slide>
+            <div class="slides-container" >
                 
-            </ng-container>
-        
-        
+                <ng-container *ngFor="let item of state.loadedSlides; let i=index">
+                    <ue-slide 
+                        #slide
+                        [hidden]="!state.isGalleryStarted"
+                        class=""
+                        [ngClass]="{
+                            previous: i < state.activeItem,
+                            current: i === state.activeItem,
+                            next: i > state.activeItem
+                        }" 
+                        [index]="i" 
+                        [activeItem]="state.activeItem" 
+                        [item]="item">
+                    </ue-slide>
+                    
+                </ng-container>
+            </div>
         </div>
     </main>
     

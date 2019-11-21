@@ -1,9 +1,12 @@
 <div class="slide-container" [ngSwitch]="item.type">
     
     <!-- IMAGE TEMPLATE -->
-    <div 
+    <!-- <div 
         class="slide image" 
         [class.hidden]="index !== activeItem" 
+        *ngSwitchDefault> -->
+    <div 
+        class="slide image" 
         *ngSwitchDefault>
         <figure>
             <div class="img-container">

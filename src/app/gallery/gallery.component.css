@@ -20,6 +20,8 @@
     color: #ffffff;
 }
 
+/* NAVIGATION */
+/* --------------------- */
 .container .navigation {
     /* display: flex; */
     position: absolute;
@@ -100,53 +102,46 @@
 }
 
 
-/* .container {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    border: 5px solid black;  
-    background-color: green;
-    height: 97vh
-}
 
-.container .navigation {
-    display: flex;
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-    top: calc(50% - 25px)
-
-}
-
-
-.container .navigation .controls {
-    list-style-type: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.container .navigation .controls li {
-    display: flex;
-    width: 50px;
-    height: 50px;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    background-color: yellow;
-    color: black;
-    border-radius: 50%;
-    
-}
+  /*****************************/
+ /** MULTIMEDIA  STYLES **/
+/*****************************/
 
 .container .multimedia {
+  position: relative;
+  width: 300%;
+  overflow: hidden;
+  background-color: red;
+}
+
+.container .multimedia .slides-container{
+  display: flex;
+}
+
+.container .multimedia .slides-container ue-slide{
+  flex: 1;
+  background-color: green;
+}
+
+
+/*.container .multimedia {
     display: flex;
     overflow: hidden;
     max-width: 85%;
     background-color: salmon;
     padding: 15px;
+}
+
+.current {
+  width: 100%;
+  height: 100%;
+  -webkit-animation-name: slideInRight;
+  animation-name: slideInRight;
+  
+  animation-duration: 0.7s;
+  -webkit-animation-duration: 0.7s;
+  animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
 }
  */
 
@@ -258,15 +253,3 @@ animation-name: slideOutRight;
     -webkit-animation-fill-mode: both;
 }
 
-.current {
-  /* position: absolute; */
-  width: 100%;
-  height: 100%;
-  -webkit-animation-name: slideInRight;
-  animation-name: slideInRight;
-  
-  animation-duration: 0.7s;
-  -webkit-animation-duration: 0.7s;
-  animation-fill-mode: both;
-  -webkit-animation-fill-mode: both;
-}

@@ -21,40 +21,30 @@
     <main>
         
         <!-- LANDING -->
-        <div 
-        class="landing" 
-        [hidden]="state.isGalleryStarted">
-            <h1>{{gallery.cintillo}}</h1>
-            <h2>{{gallery.titulo}}</h2>
-            <p>{{gallery.firmas[0].name}}</p>
-            <p>{{gallery.publishedAt}}</p>
-            <figure>
-                <img src="{{gallery.multimedia[0].url}}" alt="{{gallery.titulo}}">
-            </figure>
-            <div class="content">
-                <nav>
-                    <button (click)="onStartGallery()">Ver galería ></button>
-                </nav>
-                <p>{{gallery.entradilla}}</p>
-            </div>
-        </div>
+        <ue-landing 
+            [gallery]="gallery" 
+            [isGalleryStarted]="state.isGalleryStarted"
+            (startGallery)="onStartGallery($event)">
+        </ue-landing>
         
         
         
         <!-- SLIDES -->
         <div class="multimedia">
-            <div class="slides-container" >
+            <div 
+                class="slides-container"
+                [ngClass]="{
+                    nextTransition: state.transition === 'next',
+                    nextTransitionFirst: state.transition === 'next-first',
+                    previousTransition: state.transition === 'previous',
+                    current: state.transition === 'current'
+                }"
+            >
                 
                 <ng-container *ngFor="let item of state.loadedSlides; let i=index">
                     <ue-slide 
                         #slide
                         [hidden]="!state.isGalleryStarted"
-                        class=""
-                        [ngClass]="{
-                            previous: i < state.activeItem,
-                            current: i === state.activeItem,
-                            next: i > state.activeItem
-                        }" 
                         [index]="i" 
                         [activeItem]="state.activeItem" 
                         [item]="item">
@@ -63,6 +53,9 @@
                 </ng-container>
             </div>
         </div>
+        <footer [hidden]="!state.isGalleryStarted">
+            {{state.activeItem}}
+        </footer>
     </main>
     
     

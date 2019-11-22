@@ -421,7 +421,8 @@ export class GalleryComponent implements OnInit, AfterViewInit {
   state = {
     isGalleryStarted: false,
     activeItem: 0,  // || localStorage.getItem("activeItem");
-    loadedSlides: []
+    loadedSlides: [],
+    transition: ""
   }
 
   private setState(key, value){
@@ -460,6 +461,7 @@ export class GalleryComponent implements OnInit, AfterViewInit {
   }
 
   loadContent(slidesToLoad: number){
+    this.setState("loadedSlides", []);
     let maxSlides = slidesToLoad;
     // Here will go the fetched data
     let loadedSlides = this.state.loadedSlides; // || localStorage
@@ -472,20 +474,20 @@ export class GalleryComponent implements OnInit, AfterViewInit {
       
   }
 
-  onStartGallery(){
+  onStartGallery($event){
+    this.loadContent(4);
     this.setState("isGalleryStarted", true);
   }
 
   onRestartGallery(){
     this.setState("isGalleryStarted", false);
     this.setState("loadedSlides", []);
-    this.loadContent(3);
+    this.loadContent(4);
   }
  
   
   nextAction(){
     console.log("nextAction");
-    console.log("Children", this.slide);
     let activeItem = this.state.activeItem;
     
     ++activeItem;
@@ -493,43 +495,114 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     console.log("activeItem", activeItem);
     
     if (activeItem >= this.gallery.multimedia.length) {
-      console.log("HERE");
-      
       activeItem = this.gallery.multimedia.length;
       this.setState("activeItem", --activeItem);
       return;
     }
 
-    console.log(typeof this.state.loadedSlides[activeItem]);
+    let loadedSlides = this.state.loadedSlides;
     
-    if(typeof this.state.loadedSlides[activeItem] === 'undefined') {
-      let loadedSlides = this.state.loadedSlides;
-      loadedSlides.push(this.gallery.multimedia[loadedSlides.length]);
-      this.setState("loadedSlides", loadedSlides);
+    console.log(activeItem + 2);
+    
+
+    if(typeof this.gallery.multimedia[activeItem + 2] !== 'undefined') {
+      if (activeItem > 1) {
+        this.setState("transition", "next");
+
+      }else this.setState("transition", "next-first");
+      
+      setTimeout(() => {
+        this.setState("activeItem", activeItem);
+        if (activeItem > 1) {
+          console.log(!loadedSlides.includes(this.gallery.multimedia[activeItem + 2]));
+          
+          // if has element dont add it again
+          if (!loadedSlides.includes(this.gallery.multimedia[activeItem + 2])) {
+            loadedSlides.push(this.gallery.multimedia[activeItem + 2]);
+            loadedSlides.shift();
+          }
+          this.setState("transition", "current");
+        }
+        console.log(this.gallery.multimedia[activeItem + 2]);
+        console.log(this.gallery.multimedia);
+        console.log(this.state.loadedSlides.length);
+        console.log(this.state.loadedSlides);
+      }, 710);
+
+    }else {
+      if (activeItem !== this.gallery.multimedia.length ) {
+        this.setState("transition", "next")
+        setTimeout(() => {
+          this.setState("activeItem", activeItem);
+          loadedSlides.push({});
+          loadedSlides.shift();
+          console.log(this.gallery.multimedia[activeItem + 3]);
+          console.log(this.gallery.multimedia);
+          console.log(this.state.loadedSlides.length);
+          console.log(this.state.loadedSlides);
+          this.setState("transition", "current")
+        }, 710);
+        
+      }
+
     }
-    this.setState("activeItem", activeItem);
+
+    
+
 
   }
   
   previousAction(){
+    let loadedSlides = this.state.loadedSlides;
     console.log("previousAction");
     let activeItem = this.state.activeItem;
     --activeItem ;
+
+   
+
     console.log("previous activeItem", activeItem);
     
+    
+    
     if (activeItem >= 0) {
-      this.setState("activeItem", activeItem);
+      
+      setTimeout(() => {
+        // if has element dont add it again
+        if (!loadedSlides.includes(this.gallery.multimedia[activeItem])) {
+          loadedSlides.unshift(this.gallery.multimedia[activeItem]);
+          loadedSlides.pop();
+        }
+        this.setState("transition", "previous");
+        
+      }, 10);
+
+
+      setTimeout(() => {
+        this.setState("activeItem", activeItem);
+        console.log(this.gallery.multimedia[activeItem]);
+        console.log(this.gallery.multimedia);
+        console.log(this.state.loadedSlides.length);
+        console.log(this.state.loadedSlides);
+        this.setState("transition", "")
+      }, 700);
     } else {
-      this.onRestartGallery();
+        this.onRestartGallery();
+        this.setState("transition", "");
+        return;
+        
     }
+
+    
+    this.setState("loadedSlides", loadedSlides);
+    console.log(this.state.loadedSlides);
+
   }
 
 
   ngOnInit() {
     // this.fetchData(this.src).then((response => this.gallery = response));
-
-    this.loadContent(3);
-    console.log(this.state);
+    this.loadContent(4);
+    console.log(this.state.loadedSlides);
   }
   
   ngAfterViewInit(){

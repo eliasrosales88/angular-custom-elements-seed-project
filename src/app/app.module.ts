@@ -5,12 +5,14 @@ import { ButtonComponent } from './button/button.component';
 import { createCustomElement } from '@angular/elements';
 import { GalleryComponent } from './gallery/gallery.component';
 import { SlideComponent } from './gallery/slide/slide.component';
+import { LandingComponent } from './gallery/landing/landing.component';
 
 @NgModule({
   declarations: [
     ButtonComponent,
     GalleryComponent,
-    SlideComponent
+    SlideComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule

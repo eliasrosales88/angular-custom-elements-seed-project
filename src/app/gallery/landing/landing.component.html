@@ -1,0 +1,15 @@
+<div class="landing" [hidden]="isGalleryStarted">
+    <h1>{{gallery.cintillo}}</h1>
+    <h2>{{gallery.titulo}}</h2>
+    <p>{{gallery.firmas[0].name}}</p>
+    <p>{{gallery.publishedAt}}</p>
+    <figure>
+        <img src="{{gallery.multimedia[0].url}}" alt="{{gallery.titulo}}">
+    </figure>
+    <div class="content">
+        <nav>
+            <button (click)="onStartGallery()">Ver galería ></button>
+        </nav>
+        <p>{{gallery.entradilla}}</p>
+    </div>
+</div>

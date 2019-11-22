@@ -3,7 +3,7 @@
     <!-- IMAGE TEMPLATE -->
     <!-- <div 
         class="slide image" 
-        [class.hidden]="index !== activeItem" 
+        [hidden]="index !== activeItem" 
         *ngSwitchDefault> -->
     <div 
         class="slide image" 
@@ -13,12 +13,11 @@
                 <img src="{{item.url}}" alt="{{item.titulo}}">
             </div>
                 <figcaption>
+                    <h2>{{index}}</h2>
                     <h2>{{item.titulo}}</h2>
                     <p>{{item.descripcion}}</p>
                 </figcaption>
         </figure>
-        <footer>
-            {{activeItem}}
-        </footer>
+
     </div>
 </div>

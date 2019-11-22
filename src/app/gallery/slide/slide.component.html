@@ -12,10 +12,13 @@
             <div class="img-container">
                 <img src="{{item.url}}" alt="{{item.titulo}}">
             </div>
-                <figcaption>
-                    <h2>{{index}}</h2>
-                    <h2>{{item.titulo}}</h2>
-                    <p>{{item.descripcion}}</p>
+                <figcaption *ngIf="item.titulo">
+                    <div class="caption">
+                        <!-- <h2>{{index}}</h2> -->
+                        <h2>{{item.titulo}}</h2>
+                        <hr>
+                        <p>{{item.descripcion}}</p>
+                    </div>
                 </figcaption>
         </figure>
 

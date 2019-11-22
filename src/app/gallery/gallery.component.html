@@ -8,6 +8,9 @@
         <ul>
             <li><a href="#"><</a></li>
         </ul>
+        <div class="title">
+            {{ gallery.titulo }}
+        </div>
     </header>
 
     <!-- GALLERY CONTROLS -->
@@ -54,7 +57,7 @@
             </div>
         </div>
         <footer [hidden]="!state.isGalleryStarted">
-            {{state.activeItem}}
+            {{ state.activeItem + 1 }} / {{ gallery.multimedia.length }}
         </footer>
     </main>
     

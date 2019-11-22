@@ -10,7 +10,7 @@
         *ngSwitchDefault>
         <figure>
             <div class="img-container">
-                <img src="{{item.url}}" alt="{{item.titulo}}">
+                <img src="{{item.url}}" alt="{{item.titulo}}" (click)="onZoom()">
             </div>
                 <figcaption *ngIf="item.titulo">
                     <div class="caption">
@@ -21,6 +21,12 @@
                     </div>
                 </figcaption>
         </figure>
-
+    
+        <div class="zoom" *ngIf="isZoom">
+            <div class="close" (click)="closeZoom()">Close</div>
+            <div class="zoomed">
+                <img src="{{item.url}}" alt="{{item.titulo}}">
+            </div>
+        </div>
     </div>
 </div>

@@ -11,7 +11,7 @@ const componentName = `${PREFIX}-${NAME}`;
     console.log(`Compiling - ${componentName}`);
     
     const buildJsFiles = `ng build --prod --output-hashing=none --aot`;
-    const bundleIntoSingleFile = `cat dist/ace-seed/runtime-es2015.js dist/ace-seed/polyfills-es2015.js dist/ace-seed/main-es2015.js > dist/ace-seed/${componentName}.js`;
+    const bundleIntoSingleFile = `cat dist/ace-seed/runtime-es5.js dist/ace-seed/polyfills-es5.js dist/ace-seed/main-es5.js > dist/ace-seed/${componentName}.js`;
     const copyBundledComponent = `cp dist/ace-seed/${componentName}.js dist/element/`;
 
     execSync(`${buildJsFiles} && ${bundleIntoSingleFile} && ${copyBundledComponent}`);

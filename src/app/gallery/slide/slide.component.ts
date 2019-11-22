@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'ue-slide',
@@ -10,11 +10,31 @@ export class SlideComponent implements OnInit {
   @Input() index: number;
   @Input() activeItem: number;
   @Output() startGallery = new EventEmitter();
+  @Output() zoom = new EventEmitter();
+  isZoom: boolean = false;
   
-  constructor() { }
+  constructor(private cd: ChangeDetectorRef) { }
 
   onStartGallery(){
     this.startGallery.emit();
+  }
+
+  onZoom() {
+    console.log("ZOOM");
+    
+    let zoom = this.isZoom;
+    
+    console.log(zoom);
+    console.log(!zoom);
+    this.isZoom = !zoom;
+    this.zoom.emit();
+    this.cd.detectChanges();
+  }
+
+  closeZoom() {
+    this.isZoom = false;
+    this.cd.detectChanges();
+    this.zoom.emit();
   }
   ngOnInit() {}
 

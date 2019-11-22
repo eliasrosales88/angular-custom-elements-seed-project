@@ -599,6 +599,12 @@ export class GalleryComponent implements OnInit, AfterViewInit {
   }
 
 
+  refresh() {
+    console.log("check!");
+    
+    this.cd.detectChanges();
+  }
+
   ngOnInit() {
     // this.fetchData(this.src).then((response => this.gallery = response));
     this.loadContent(4);

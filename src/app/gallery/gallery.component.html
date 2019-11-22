@@ -50,7 +50,8 @@
                         [hidden]="!state.isGalleryStarted"
                         [index]="i" 
                         [activeItem]="state.activeItem" 
-                        [item]="item">
+                        [item]="item"
+                        (zoom)="refresh()">
                     </ue-slide>
                     
                 </ng-container>

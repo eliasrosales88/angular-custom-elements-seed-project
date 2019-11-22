@@ -1,3 +1,9 @@
+.container  {
+  /* To make gallery fits in html element
+  This requires that header change to position absolute */
+  
+  /* position: relative; */
+}
 .container .gallery-header {
     position: fixed;
     top: 0;
@@ -42,7 +48,7 @@
 .container .navigation {
     /* display: flex; */
     position: absolute;
-    width: 100%;
+    width: calc(100vw - 2.2vw);
     z-index: 1;
     top: calc(39% - 25px)
 
@@ -125,9 +131,11 @@
 /*****************************/
 
 .container .multimedia {
-  width: 100%;
-  overflow: hidden;
-  background-color: #1a1a1a;
+    width: 100%;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    /* position: absolute;
+    left: 0; */
 }
 
 .container .multimedia .slides-container{

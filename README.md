@@ -3,14 +3,20 @@
 [Angular CLI](https://github.com/angular/angular-cli) version 8.3.12.
 
 ## Servidor de desarrollo
-`ng serve`  
+`npm start`  
 
 `http://localhost:4200/`  
 
 ---
+## Prueba concepto  
+
+La prueba concepto se encuentra en la carpeta **public** en la raiz del proyecto.
+
+
+---
 ## Creación del componente web customizado
 
-Ejecutar  `ng build:element` para crear el componente web. El resultado de este comando será un archivo js ubicado en la carpeta `dist/element` en la raíz del proyecto.  
+Ejecutar  `npm run build:element` para crear el componente web. El resultado de este comando será un archivo js ubicado en la carpeta `dist/element` en la raíz del proyecto.  
   
 El nombre del componente web está compuesto de un PREFIJO y un NOMBRE personalizados `pr-nombre`. Este nombre es importante ya tiene que coincidir con el selector del componente que deseamos registrar.  
 
